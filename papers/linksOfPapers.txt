@@ -1,0 +1,8 @@
+To cite these papers in an academic document (using APA style as a standard), you should format them as follows. I have included the direct links to the versions you provided.
+
+References
+1. On Spiking Neural Networks and NeuCube: Tan, C., Šarlija, M., & Kasabov, N. (2020). Spiking neural networks: Background, recent development and the NeuCube architecture. Neural Processing Letters, 52(2), 1675-1732. https://doi.org/10.1007/s11063-020-10322-8
+
+2. On Difference Target Propagation (The Foundational Paper): Lee, D. H., Zhang, S., Fischer, A., & Bengio, Y. (2015). Difference target propagation. In Joint European Conference on Machine Learning and Knowledge Discovery in Databases (pp. 498-515). Springer, Cham. https://arxiv.org/abs/1412.7525
+
+3. On the Theoretical Framework of Target Propagation: Meulemans, A., Carzaniga, F. S., Suykens, J. A., Sacramento, J., & Grewe, B. F. (2020). A theoretical framework for target propagation. Advances in Neural Information Processing Systems (NeurIPS), 33, 20024-20036. https://arxiv.org/abs/2006.14331
