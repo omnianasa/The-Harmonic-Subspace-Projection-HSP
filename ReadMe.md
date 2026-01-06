@@ -25,10 +25,17 @@ I need to rethink in the digital neuron from the ground up. Instead of just foll
  - how it is scalable for most applications 
  - be more clear without the blackbox 
 
+### Which limitation is primary: computation cost, black box, catastrophic forgetting?
+
+The plan is to apply as most as i can but will be in different phases starting with: black box, forgetting, computation
+*why*:
+1- black box: making a new algorithm that solves the black box may open new chances to get the actual black box problem
+2- forgetting: i thought in making it the first periority but if you know the path (the right one) we can get how to return it back and have a virtual memory or in-memory inside the neuron to update it.
+3- computation: even with new algorithm and building a (network) that will need big computations for taking the weight and parameters based on.    
 
 ## QUESTIONS TO BE ASKED
 
-- What exact problem am I trying to solve?
+- What exact problem am I trying to solve? **ok**
 - Which limitation is primary: computation cost, black box, catastrophic forgetting?
 - Why current neural network methods can not solve this problem with some modifications?
 - Which biological principles am I using?
