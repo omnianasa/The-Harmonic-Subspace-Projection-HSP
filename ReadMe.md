@@ -17,6 +17,15 @@ We rely on 2 things:
 high resolution is processed at the center of gaze (fovea), low resolution is peripheral region. The brain works on and integrate them and increase the resolution (similar as CNN)
 apply ray tracing like we have studied in computer graphic but as the base idea in the NN it will be the gradient and acts like a ray that travels between nodes. Bfocus in big and then become blur a edges that the brain make it more stronger so we will reach a similar design using the ray tracing which will terminate the black box of NN 
 
+### What exact problem am I trying to solve?
+
+I need to rethink in the digital neuron from the ground up. Instead of just following the same old path, I need to build a new architecture that changes how data is represented and how networks learn. My goal is to replace slow, expensive, and mysterious systems with a new model that is fast, clear, and easy to scale and make the next revolution in the field of AI.
+ - how to correctly represent data
+ - how to build the neuron and the network 
+ - how it is scalable for most applications 
+ - be more clear without the blackbox 
+
+
 ## QUESTIONS TO BE ASKED
 
 - What exact problem am I trying to solve?
