@@ -11,3 +11,6 @@ References
 
 6- Elastic Weight Consolidation (EWC):Nuts and Bolts
 https://arxiv.org/pdf/2105.04093
+
+7- Progressive Neural Networks
+https://arxiv.org/pdf/1606.04671

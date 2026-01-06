@@ -31,12 +31,21 @@ The plan is to apply as most as i can but will be in different phases starting w
 *why*:
 1- black box: making a new algorithm that solves the black box may open new chances to get the actual black box problem
 2- forgetting: i thought in making it the first periority but if you know the path (the right one) we can get how to return it back and have a virtual memory or in-memory inside the neuron to update it.
-3- computation: even with new algorithm and building a (network) that will need big computations for taking the weight and parameters based on.    
+3- computation: even with new algorithm and building a (network) that will need big computations for taking the weight and parameters based on.   
+
+### Why current neural network methods can not solve this problem with some modifications?
+
+from little search i have made until now :
+For Catastrophic Forgetting: While early approaches struggled with this "flaw" (Zohuri & Moghaddam, 2020), modern research into neuromorphic computing offers a more robust solution. Tan et al. (2020) argue that the event-driven nature of SNNs, combined with Spike-Timing Dependent Plasticity (STDP), mimics the synaptic consolidation found in the human brain
+For Black Box Problem: In traditional deep learning, decisions are built by millions of weights, making it almost impossible to trace the logic of a specific output. However, the development of Spiking Neural Networks (SNNs) and the NeuCube architecture has shifted the paradigm from abstract matrices to spatial transparency.
+
+BUT ALL ALGORITHMS ARE NOT STILL COMPLETE AND LOSE THE SOLUTION ACC OR NOT SCALABLE 
+
 
 ## QUESTIONS TO BE ASKED
 
 - What exact problem am I trying to solve? **ok**
-- Which limitation is primary: computation cost, black box, catastrophic forgetting?
+- Which limitation is primary: computation cost, black box, catastrophic forgetting? **ok**
 - Why current neural network methods can not solve this problem with some modifications?
 - Which biological principles am I using?
 - Which biological details am I ignoring, and why?
