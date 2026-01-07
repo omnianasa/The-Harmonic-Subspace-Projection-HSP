@@ -14,3 +14,80 @@ https://arxiv.org/pdf/2105.04093
 
 7- Progressive Neural Networks
 https://arxiv.org/pdf/1606.04671
+
+----------------------------------------SNN-------------------------------------------------------
+# Spiking Neural Networks (SNN) – Reference Papers
+
+## Core Training Methods
+
+1. Wu, J., Chua, Y., Zhang, M., Li, H., & Tan, K. C. (2019).  
+   **A Tandem Learning Rule for Effective Training and Rapid Inference of Deep Spiking Neural Networks.**  
+   *IEEE Transactions on Neural Networks and Learning Systems.*  
+   https://arxiv.org/abs/1907.01167
+
+2. Ding, J., Yu, Z., Chen, Y., Huang, T., Tian, Y., & Ma, Z. (2021).  
+   **Optimal ANN-SNN Conversion for Fast and Accurate Deep Spiking Neural Networks.**  
+   *International Joint Conference on Artificial Intelligence (IJCAI).*  
+   https://arxiv.org/abs/2105.11654
+
+3. Kim, Y., Park, Y., Na, B., & Yoon, S. (2021).  
+   **Beyond Classification: Directly Training Spiking Neural Networks for Semantic Segmentation.**  
+   *Neural Information Processing Systems (NeurIPS).*  
+   https://arxiv.org/abs/2110.07742
+
+
+## Surveys and Reviews
+
+4. Taherkhani, A., Belatreche, A., Li, Y., Maguire, L. P., & McGinnity, T. M. (2022).  
+   **Spiking Neural Networks and Their Applications: A Review.**  
+   *Brain Sciences, 12(7), 863.*  
+   https://www.mdpi.com/2076-3425/12/7/863
+
+5. Zhang, W., Li, P., Chen, Y., & Gu, J. (2023).  
+   **Learning Rules in Spiking Neural Networks: A Survey.**  
+   *Neurocomputing.*  
+   https://doi.org/10.1016/j.neucom.2023.126020
+
+6. Ma, Z., Zhang, Y., Gu, J., & Chen, Y. (2023).  
+   **A Review of Recent Advances and Applications of Spiking Neural Networks.**  
+   *Strategic Study of CAE.*  
+   https://www.engineering.org.cn/EN/10.15302/J-SSCAE-2023.06.011
+
+
+## Biologically Inspired & Algorithmic Work
+
+7. Neftci, E. O., Mostafa, H., & Zenke, F. (2019).  
+   **Surrogate Gradient Learning in Spiking Neural Networks.**  
+   *IEEE Signal Processing Magazine.*  
+   https://arxiv.org/abs/1901.09948
+
+8. Roy, K., Jaiswal, A., & Panda, P. (2019).  
+   **Towards Spike-Based Machine Intelligence with Neuromorphic Computing.**  
+   *Nature.*  
+   https://www.nature.com/articles/s41586-019-1677-2
+
+
+## Specialized & Recent Topics
+
+9. Zhang, S., Liu, S., & Tang, H. (2025).  
+   **Spatial Spiking Neural Networks Enable Efficient and Robust Temporal Computation.**  
+   *arXiv preprint.*  
+   https://arxiv.org/abs/2512.10011
+
+10. Zhao, W., Jiang, H., Luo, Z., & Xu, Y. (2021).  
+    **Design of MRI-Structured Spiking Neural Networks for EEG Signal Analysis.**  
+    *Scientific Reports.*  
+    https://www.nature.com/articles/s41598-021-90029-5
+
+
+## Additional Application-Oriented Studies
+
+11. Kasabov, N. (2019).  
+    **Time-Space Spiking Neural Networks and Brain-Inspired Artificial Intelligence.**  
+    *Springer.*  
+    https://link.springer.com/book/10.1007/978-3-030-15256-1
+
+12. Tavanaei, A., Ghodrati, M., Kheradpisheh, S. R., Masquelier, T., & Maida, A. (2019).  
+    **Deep Learning in Spiking Neural Networks.**  
+    *Neural Networks.*  
+    https://doi.org/10.1016/j.neunet.2019.04.015
