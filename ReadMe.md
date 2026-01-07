@@ -41,16 +41,22 @@ For Black Box Problem: In traditional deep learning, decisions are built by mill
 
 BUT ALL ALGORITHMS ARE NOT STILL COMPLETE AND LOSE THE SOLUTION ACC OR NOT SCALABLE 
 
+### About the biological phase 
+
+think that i need to develop SNN which improves the biological phase in very good details. but the algorithm needs to be developed in ;
+- computations and efficiency
+- New Neuron Model
+- Catastrophic forgetting co-design
 
 ## QUESTIONS TO BE ASKED
 
 - What exact problem am I trying to solve? **ok**
 - Which limitation is primary: computation cost, black box, catastrophic forgetting? **ok**
-- Why current neural network methods can not solve this problem with some modifications?
-- Which biological principles am I using?
-- Which biological details am I ignoring, and why?
-- Am I borrowing structure from biology or only metaphor?
-- What does biological vision do better than current neural networks?
+- Why current neural network methods can not solve this problem with some modifications? **ok**
+- Which biological principles am I using? **ok**
+- Which biological details am I ignoring, and why? **ok**
+- Am I borrowing structure from biology or only metaphor? **ok**
+- What does biological vision do better than current neural networks? **ok**
 - How does foveated vision translate into a computational methods?
 - What does success look like in measurable terms?
 - Which metrics will be used to check improvement?
