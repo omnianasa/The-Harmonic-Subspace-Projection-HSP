@@ -112,6 +112,15 @@ spatial and structural task isolation:
 * **Unique Foveae:** $\mathcal{F}_A \neq \mathcal{F}_B$
 * **Disjoint Rays:** $\mathcal{R}_A \cap \mathcal{R}_B \approx \emptyset$
 
+## What does success look like in measurable terms?
+F1 core, Precision, Top1-5 accuracy, FLOPS, GPU/CPU usage, Number of parameters(memory)
+Ray Coverage Map, Fovea overlap, active ray, sparsity (processed/possible)
+Robustness
+
+
+
+
+
 ## QUESTIONS TO BE ASKED
 
 - What exact problem am I trying to solve? **ok**
@@ -122,17 +131,17 @@ spatial and structural task isolation:
 - Am I borrowing structure from biology or only metaphor? **ok**
 - What does biological vision do better than current neural networks? **ok**
 - How does foveated vision translate into a computational methods? **ok**
-- What does success look like in measurable terms?
-- Which metrics will be used to check improvement?
-- What is the fundamental unit for computation in this model?
-- What replaces standard back propagation?
-- How will information propagate through the system?
-- What defines the start of a learning signal (ray)?
+- What does success look like in measurable terms? **ok**
+- Which metrics will be used to check improvement? **ok**
+- What is the fundamental unit for computation in this model? ray **ok**
+- What replaces standard back propagation? **ok**
+- How will information propagate through the system? active rays only based on the fovea **ok**
+- What defines the start of a learning signal (ray)? attention **ok**
 - What defines its direction?
 - What defines its termination?
-- Is the process deterministic or probabilistic?
+- Is the process deterministic or probabilistic? both
 - Can a single decision be traced end-to-end?
-- Are learning paths visible?
+- Are learning paths visible? yes fully **ok**
 - What is the smallest experiment that tests the core hypothesis?
 - What dataset is sufficient?
 - What outcome would make the hypothesis successful?
