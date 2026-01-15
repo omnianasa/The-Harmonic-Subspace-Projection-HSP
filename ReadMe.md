@@ -56,6 +56,17 @@ so we need to make a neural network less computational, do not forget, better pe
 we do not see in the same resolution. the center of foveated is the most resolution accuracy and it reduces on periphery. the foveated is based on the attention and the brain is the master to integrate all that together . 
 SO THAT: not all input dimensions deserve equal precision or equal learning effort. So instead of uniform tensors, use multi resolution, attention guided representations.
 
+
+The data will be represented in 3 levels general, special, very special. The foveated is where the network focuses on based on what?
+- new thing
+- a mistake 
+- lots of rays
+
+FOVETAED -> low and strong rays
+PERIPHERY -> high and weak
+The network learn from what it focuses on
+
+
 ## QUESTIONS TO BE ASKED
 
 - What exact problem am I trying to solve? **ok**
@@ -65,7 +76,7 @@ SO THAT: not all input dimensions deserve equal precision or equal learning effo
 - Which biological details am I ignoring, and why? **ok**
 - Am I borrowing structure from biology or only metaphor? **ok**
 - What does biological vision do better than current neural networks? **ok**
-- How does foveated vision translate into a computational methods?
+- How does foveated vision translate into a computational methods? **ok**
 - What does success look like in measurable terms?
 - Which metrics will be used to check improvement?
 - What is the fundamental unit for computation in this model?
