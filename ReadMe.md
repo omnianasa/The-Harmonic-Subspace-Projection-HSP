@@ -52,6 +52,9 @@ think that i need to develop SNN which improves the biological phase in very goo
 
 so we need to make a neural network less computational, do not forget, better performance. Based on the  ray tracing that inspired me to apply it we can replace the numbers it all based on the paths not just the path the weigt got to as we discussed but replacing the full numbers to ways and paths.. just when we add new tasks the old paths will not be removed which reduce the percentage of forgetting. 
 
+## How does foveated vision translate into a computational methods?
+we do not see in the same resolution. the center of foveated is the most resolution accuracy and it reduces on periphery. the foveated is based on the attention and the brain is the master to integrate all that together . 
+SO THAT: not all input dimensions deserve equal precision or equal learning effort. So instead of uniform tensors, use multi resolution, attention guided representations.
 
 ## QUESTIONS TO BE ASKED
 
