@@ -48,6 +48,11 @@ think that i need to develop SNN which improves the biological phase in very goo
 - New Neuron Model
 - Catastrophic forgetting co-design
 
+## More inside the idea
+
+so we need to make a neural network less computational, do not forget, better performance. Based on the  ray tracing that inspired me to apply it we can replace the numbers it all based on the paths not just the path the weigt got to as we discussed but replacing the full numbers to ways and paths.. just when we add new tasks the old paths will not be removed which reduce the percentage of forgetting. 
+
+
 ## QUESTIONS TO BE ASKED
 
 - What exact problem am I trying to solve? **ok**
