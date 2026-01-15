@@ -66,6 +66,51 @@ FOVETAED -> low and strong rays
 PERIPHERY -> high and weak
 The network learn from what it focuses on
 
+# Mathematical explanation
+
+## 1. Multi-scale Input Representation
+input $X$ is structured into a hierarchy of resolutions rather than a single dense vector:
+
+$$X \longrightarrow \{ X^{(0)}, X^{(1)}, \dots, X^{(K)} \}$$
+
+* $X^{(0)}$: Coarse, global structure.
+* $X^{(K)}$: Fine, local details.
+
+## 2. Fovea Selection (Dynamic Attention)
+
+$$\mathcal{F}_t = \arg \max_{\Omega \subseteq X} S(X, \Omega)$$
+
+multiple signals to guide focus:
+$$S(X, \Omega) = \alpha_1 \text{Uncertainty}(\Omega) + \alpha_2 \text{Novelty}(\Omega) + \alpha_3 \text{PredictionError}(\Omega) + \alpha_4 \text{RayDensity}(\Omega)$$
+
+## 3. Ray Allocation Across Scales
+Ray intensity $\alpha_k$ for each scale $k$ follows an exponential decay to balance the global context and local precision:
+
+$$\alpha_k = \alpha_0 \cdot e^{-\lambda k}, \quad k=0,1,\dots,K$$
+
+Where:
+* $\alpha_0$: Base ray intensity.
+* $\lambda$: Scale decay factor.
+* Each ray $r \in \mathcal{R}_k$ carries a feature representation $\phi(r)$.
+
+## 4. Learning Updates Restricted to Fovea
+To prevent overwriting existing knowledge, weight updates are strictly localized to the current fovea:
+
+$$\Delta \phi(r) = 
+\begin{cases} 
+\text{learning\_update}(\phi(r)) & \text{if } r \in \mathcal{F}_t \\
+0 & \text{if } r \notin \mathcal{F}_t
+\end{cases}$$
+
+## 5. Integration of Rays into Output
+The final output $y$ integrates features across all scales:
+
+$$y = f\Bigg(\sum_{k=0}^{K} \sum_{r \in \mathcal{R}_k} \alpha_k \cdot \phi(r) \Bigg)$$
+
+## 6. Task Separation for Continual Learning
+spatial and structural task isolation:
+* **Unique Foveae:** $\mathcal{F}_A \neq \mathcal{F}_B$
+* **Disjoint Rays:** $\mathcal{R}_A \cap \mathcal{R}_B \approx \emptyset$
 
 ## QUESTIONS TO BE ASKED
 
