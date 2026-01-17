@@ -128,3 +128,6 @@ Initially, the model tended to reuse the same rays across tasks. To encourage al
 
 # Stage 7: Scale-Dependent 
 We observed that the fine-scale (foveal) rays needed stronger separation between tasks than coarser scales. We made the penalty scale-dependent: beta_scale = beta * (scale_index + 1)^2. This results in coarse features being shared across tasks while fine-scale representations become highly task-specific.
+
+# Stage 8: Measurement & Evaluation
+To quantitatively evaluate task separation, we defined a ray overlap metric. Overlap is calculated as the fraction of shared rays between two tasks at each scale. Low overlap (near 0) indicates task-specific ray allocation, while high overlap (near 1) indicates interference. We plotted these overlaps across sequential tasks to visualize representational separation.
