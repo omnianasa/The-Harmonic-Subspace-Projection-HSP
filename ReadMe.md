@@ -115,3 +115,7 @@ We split the input into three scales: a coarse scale for global view, a medium s
 
 # Stage 3: Dynamic Fovea Selection
 The fovea is not fixed; it dynamically adjusts based on prediction error and novelty. New rays receive higher priority to encourage exploration. The selection score is computed as score = activation * error * novelty_weight. Each training step, we select the top k rays with the highest scores to form the current fovea.
+
+# Stage 4: Solving Catastrophic Forgetting
+When starting a new task, we freeze the rays that were active in previous tasks, preventing any updates to their weights. We also incorporate old ray memory as an additive input to the network, similar to residual connections. This ensures that previously learned representations remain intact and are not disrupted by new learning.
+
