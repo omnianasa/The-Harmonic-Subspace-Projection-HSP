@@ -119,3 +119,9 @@ The fovea is not fixed; it dynamically adjusts based on prediction error and nov
 # Stage 4: Solving Catastrophic Forgetting
 When starting a new task, we freeze the rays that were active in previous tasks, preventing any updates to their weights. We also incorporate old ray memory as an additive input to the network, similar to residual connections. This ensures that previously learned representations remain intact and are not disrupted by new learning.
 
+# Stage 5: Task-Specific Heads
+We discovered that even with preserved memory, a shared output layer across tasks caused the network to continually favor the most recent task. To solve this, we gave each task its own output head a separate linear layer that maps the combined ray activations to task-specific outputs, eliminating readout interference.
+
+
+# Stage 6: Novelty Penalty Adjustment
+Initially, the model tended to reuse the same rays across tasks. To encourage allocation of new capacity, we introduced a novelty penalty. The selection score was modified to score = activation * error * exp(-beta * usage_count), where usage_count tracks how many tasks have used a given ray. This pushes the network to select less-used rays for new tasks.
