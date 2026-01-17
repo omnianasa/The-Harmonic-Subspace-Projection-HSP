@@ -123,5 +123,8 @@ When starting a new task, we freeze the rays that were active in previous tasks,
 We discovered that even with preserved memory, a shared output layer across tasks caused the network to continually favor the most recent task. To solve this, we gave each task its own output head a separate linear layer that maps the combined ray activations to task-specific outputs, eliminating readout interference.
 
 
-# Stage 6: Novelty Penalty Adjustment
-Initially, the model tended to reuse the same rays across tasks. To encourage allocation of new capacity, we introduced a novelty penalty. The selection score was modified to score = activation * error * exp(-beta * usage_count), where usage_count tracks how many tasks have used a given ray. This pushes the network to select less-used rays for new tasks.
+# Stage 6: Penalty Adjustment
+Initially, the model tended to reuse the same rays across tasks. To encourage allocation of new capacity, we introduced a penalty. The selection score was modified to score = activation * error * exp(-beta * usage_count), where usage_count tracks how many tasks have used a given ray. This pushes the network to select less-used rays for new tasks.
+
+# Stage 7: Scale-Dependent 
+We observed that the fine-scale (foveal) rays needed stronger separation between tasks than coarser scales. We made the penalty scale-dependent: beta_scale = beta * (scale_index + 1)^2. This results in coarse features being shared across tasks while fine-scale representations become highly task-specific.
