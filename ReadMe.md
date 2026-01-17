@@ -59,7 +59,7 @@ RayNN is inspired by:
 - Helps the network remember old tasks while learning new ones.
 - Reduces catastrophic forgetting by selectively updating connections
 
-# Mathematical explanation
+# Stage 1 : Mathematical explanation
 
 ## 1. Multi-scale Input Representation
 input $X$ is structured into a hierarchy of resolutions rather than a single dense vector:
@@ -109,3 +109,9 @@ spatial and structural task isolation:
 F1 core, Precision, Top1-5 accuracy, FLOPS, GPU/CPU usage, Number of parameters(memory)
 Ray Coverage Map, Fovea overlap, active ray, sparsity (processed/possible)
 Robustness
+
+# Stage 2: Basic Structure
+We split the input into three scales: a coarse scale for global view, a medium scale, and a fine scale representing the fovea (high-detail region). Each scale has its own set of neurons. Additionally, we created "inactive ray memory": a mechanism to preserve activation traces from previous tasks, ensuring knowledge is not overwritten.
+
+# Stage 3: Dynamic Fovea Selection
+The fovea is not fixed; it dynamically adjusts based on prediction error and novelty. New rays receive higher priority to encourage exploration. The selection score is computed as score = activation * error * novelty_weight. Each training step, we select the top k rays with the highest scores to form the current fovea.
