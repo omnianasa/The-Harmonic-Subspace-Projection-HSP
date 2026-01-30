@@ -1,64 +1,5 @@
 # Algorithm Developing To reach the big one
 
-## What is RayNN?
-RayNN is a new type of neural network designed to:
-- Learn general features efficiently.
-- Use less computation.
-- Be interpretable (you can understand how it works).
-- Remember knowledge across tasks (avoiding forgetting).
-
-## Why Do We Need It?
-Current neural networks:
-- Need a lot of GPU and computation.
-- Forget previously learned tasks easily.
-- Are like "black boxes": we cannot easily see how they make decisions.
-
-## How RayNN Works
-RayNN is inspired by:
-1. **Ray tracing in computation**: Neuron connections act like rays that carry information and learning signals.
-2. **Biological vision**: Like the eye, RayNN focuses on important parts of input with high detail (fovea) and less important parts with low detail (periphery).
-
-### Key Problems RayNN Solves
-- Efficiently represents data.
-- Makes the network more interpretable.
-- Scales well for multi-task learning.
-- Reduces forgetting old tasks.
-
-### Main Goals
-1. Make the network interpretable.
-2. Reduce forgetting of old tasks (using memory-based fovea).
-3. Reduce computation cost (later development).
-
-## Why Current Networks Fail
-- They forget old tasks because weights get overwritten.
-- They are hard to interpret because of millions of connections.
-- Some neuromorphic approaches improve this, but not completely.
-
-## Biological Inspiration
-- Vision works at multiple resolutions: detailed at the center, coarse in the periphery.
-- Attention focuses learning on novel or error-prone regions.
-- Rays in neurons are like spikes traveling along neural paths.
-
-## How Foveated Vision Works in RayNN
-- Not all input is equally important.
-- Multi-scale, attention-guided representations are used instead of uniform data.
-- Three levels of focus:
-  - Global (coarse)
-  - Special (medium)
-  - Fovea (very detailed)
-- Rays in the fovea are strong and precise; rays in the periphery are weaker.
-
-### Attention-Guided Ray Propagation
-- Rays carry information through the network like signals in the brain.
-- Attention focuses rays on important regions of the input.
-- Weak rays still exist in less important areas but are less precise.
-- This improves efficiency and interpretability.
-
-### Memory-Based Fovea for Continual Learning
-- The fovea has a memory of important features from previous tasks.
-- Helps the network remember old tasks while learning new ones.
-- Reduces catastrophic forgetting by selectively updating connections
-
 # Stage 1 : Mathematical explanation
 
 ## 1. Multi-scale Input Representation
@@ -117,7 +58,7 @@ We split the input into three scales: a coarse scale for global view, a medium s
 The fovea is not fixed; it dynamically adjusts based on prediction error and novelty. New rays receive higher priority to encourage exploration. The selection score is computed as score = activation * error * novelty_weight. Each training step, we select the top k rays with the highest scores to form the current fovea.
 
 # Stage 4: Solving Catastrophic Forgetting
-When starting a new task, we freeze the rays that were active in previous tasks, preventing any updates to their weights. We also incorporate old ray memory as an additive input to the network, similar to residual connections. This ensures that previously learned representations remain intact and are not disrupted by new learning.
+When starting a new task, we freeze the rays that were active in previous tasks, preventing any updates to their weights. We also incorporate old ray memory as an additive input to the network, similar to residual connections. This ensures that previously learned presentations remain intact and are not disrupted by new learning.
 
 # Stage 5: Task-Specific Heads
 We discovered that even with preserved memory, a shared output layer across tasks caused the network to continually favor the most recent task. To solve this, we gave each task its own output head a separate linear layer that maps the combined ray activations to task-specific outputs, eliminating readout interference.
