@@ -1,74 +1,78 @@
 # Algorithm Developing To reach the big one
 
-# Stage 1 : Mathematical explanation
+## Abstract
+Standard neural networks suffer from **Catastrophic Forgetting** because every weight is updated for every task, leading to the overwriting of prior knowledge. This project introduces **Ray Allocation**, an architecture that treats neural capacity as a finite set of "Rays" (functional pathways). By dynamically routing information through multi-scale resolutions and freezing rays post-acquisition, we achieve task isolation and memory preservation without a fixed spatial fovea.
 
-## 1. Multi-scale Input Representation
-input $X$ is structured into a hierarchy of resolutions rather than a single dense vector:
+---
 
-$$X \longrightarrow \{ X^{(0)}, X^{(1)}, \dots, X^{(K)} \}$$
+## Stage 1: Mathematical Foundation
 
-* $X^{(0)}$: Coarse, global structure.
-* $X^{(K)}$: Fine, local details.
+### 1. Multi-Scale Representation
+Inputs are decomposed into a hierarchy of feature resolutions to separate global topology from local precision:
+$$X \longrightarrow \{ \Phi^{(0)}, \Phi^{(1)}, \dots, \Phi^{(K)} \}$$
+* **$\Phi^{(0)}$**: Coarse, low-frequency global structure.
+* **$\Phi^{(K)}$**: Fine-grained, high-frequency local details.
 
-<!-- ## 2. Fovea Selection (Dynamic Attention)
+### 2. Adaptive Ray Allocation
+A "Ray" $r \in \mathcal{R}$ represents a specific learnable pathway. Selection is governed by a **Score Function** ($S$) that prioritizes novelty and error:
+$$S = \text{Activation} \times \text{Error} \times e^{-\beta \cdot \text{UsageCount}}$$
+* **UsageCount**: Tracks how many tasks have utilized a specific ray.
+* **$\beta$**: A penalty factor that pushes the model to use "virgin" capacity for new tasks.
 
-$$\mathcal{F}_t = \arg \max_{\Omega \subseteq X} S(X, \Omega)$$
-
-multiple signals to guide focus:
-$$S(X, \Omega) = \alpha_1 \text{Uncertainty}(\Omega) + \alpha_2 \text{Novelty}(\Omega) + \alpha_3 \text{PredictionError}(\Omega) + \alpha_4 \text{RayDensity}(\Omega)$$ -->
-
-## 3. Ray Allocation Across Scales
-Ray intensity $\alpha_k$ for each scale $k$ follows an exponential decay to balance the global context and local precision:
-
-$$\alpha_k = \alpha_0 \cdot e^{-\lambda k}, \quad k=0,1,\dots,K$$
-
-Where:
-* $\alpha_0$: Base ray intensity.
-* $\lambda$: Scale decay factor.
-* Each ray $r \in \mathcal{R}_k$ carries a feature representation $\phi(r)$.
-
-## 4. Learning Updates Restricted to Fovea
-To prevent overwriting existing knowledge, weight updates are strictly localized to the current fovea:
-
-$$\Delta \phi(r) = 
+### 3. Gradient Gating
+To prevent forgetting, updates are restricted to the active foveal-ray set $\mathcal{F}_t$:
+$$\Delta w = 
 \begin{cases} 
-\text{learning\_update}(\phi(r)) & \text{if } r \in \mathcal{F}_t \\
-0 & \text{if } r \notin \mathcal{F}_t
+\eta \cdot \nabla L & \text{if } w \in \text{Active Ray } r \\
+0 & \text{if } w \in \text{Protected Ray } r
 \end{cases}$$
 
-## 5. Integration of Rays into Output
-The final output $y$ integrates features across all scales:
+---
 
-$$y = f\Bigg(\sum_{k=0}^{K} \sum_{r \in \mathcal{R}_k} \alpha_k \cdot \phi(r) \Bigg)$$
+## Stage 2: Architecture & Development Stages
 
-## 6. Task Separation for Continual Learning
-spatial and structural task isolation:
-* **Unique Foveae:** $\mathcal{F}_A \neq \mathcal{F}_B$
-* **Disjoint Rays:** $\mathcal{R}_A \cap \mathcal{R}_B \approx \emptyset$
-
-## What does success look like in measurable terms?
-F1 core, Precision, Top1-5 accuracy, FLOPS, GPU/CPU usage, Number of parameters(memory)
-Ray Coverage Map, Fovea overlap, active ray, sparsity (processed/possible)
-Robustness
-
-# Stage 2: Basic Structure
-We split the input into three scales: a coarse scale for global view, a medium scale, and a fine scale representing the fovea (high-detail region). Each scale has its own set of neurons. Additionally, we created "inactive ray memory": a mechanism to preserve activation traces from previous tasks, ensuring knowledge is not overwritten.
-
-# Stage 3: Dynamic Fovea Selection
-The fovea is not fixed; it dynamically adjusts based on prediction error and novelty. New rays receive higher priority to encourage exploration. The selection score is computed as score = activation * error * novelty_weight. Each training step, we select the top k rays with the highest scores to form the current fovea.
-
-# Stage 4: Solving Catastrophic Forgetting
-When starting a new task, we freeze the rays that were active in previous tasks, preventing any updates to their weights. We also incorporate old ray memory as an additive input to the network, similar to residual connections. This ensures that previously learned presentations remain intact and are not disrupted by new learning.
-
-# Stage 5: Task-Specific Heads
-We discovered that even with preserved memory, a shared output layer across tasks caused the network to continually favor the most recent task. To solve this, we gave each task its own output head a separate linear layer that maps the combined ray activations to task-specific outputs, eliminating readout interference.
+### Phase I: Structural Sparsity
+We replace dense layers with a **Ray Bank**. Instead of a single forward pass through all neurons, the network routes the input through three scales: **Global (Coarse)**, **Context (Medium)**, and **Detail (Fine)**. Each scale consists of independent "Ray" units.
 
 
-# Stage 6: Penalty Adjustment
-Initially, the model tended to reuse the same rays across tasks. To encourage allocation of new capacity, we introduced a penalty. The selection score was modified to score = activation * error * exp(-beta * usage_count), where usage_count tracks how many tasks have used a given ray. This pushes the network to select less-used rays for new tasks.
 
-# Stage 7: Scale-Dependent 
-We observed that the fine-scale (foveal) rays needed stronger separation between tasks than coarser scales. We made the penalty scale-dependent: beta_scale = beta * (scale_index + 1)^2. This results in coarse features being shared across tasks while fine-scale representations become highly task-specific.
+### Phase II: Dynamic Routing
+Rays are not static. The model computes a selection score based on prediction error. If the current active rays cannot represent the input (high error), the model recruits "inactive rays" from the bank to expand its knowledge.
 
-# Stage 8: Measurement & Evaluation
-To quantitatively evaluate task separation, we defined a ray overlap metric. Overlap is calculated as the fraction of shared rays between two tasks at each scale. Low overlap (near 0) indicates task-specific ray allocation, while high overlap (near 1) indicates interference. We plotted these overlaps across sequential tasks to visualize representational separation.
+### Phase III: Memory Preservation (The Ray Shield)
+When Task $A$ is complete, the rays used for its success are "shielded." For Task $B$:
+* **Frozen Ray Memory**: Activations from Task $A$ rays are added as a residual input to provide context.
+* **Task-Specific Heads**: Separate output layers map the combined activations to task-specific labels, preventing "readout interference."
+
+---
+
+## Stage 3: Scale-Dependent Penalty
+Global features (coarse scale) can often be shared across tasks (e.g., both "car" and "truck" need to know what a wheel looks like). However, fine-grained details must be unique. We implement a scale-dependent penalty:
+$$\beta_{\text{scale}} = \beta \cdot (\text{scale\_index} + 1)^2$$
+This allows the **Coarse Rays** to be communal, while **Fine Rays** become highly specialized experts for specific tasks.
+
+---
+
+## Stage 4: Evaluation & Success Metrics
+
+We measure the health of the system through three primary lenses:
+
+### 1. Performance Metrics
+* **Accuracy (Top-1/5):** Tracking performance on new tasks.
+* **Backward Transfer:** Measuring how much performance on Task 1 drops after training Task 5.
+* **Computational Efficiency:** Measured in **FLOPS** and **Active Parameter Count** (Sparsity).
+
+### 2. Structural Metrics
+* **Ray Overlap ($\mathcal{O}$):** The fraction of shared rays between tasks.
+    $$\mathcal{O}_{AB} = \frac{|\mathcal{R}_A \cap \mathcal{R}_B|}{|\mathcal{R}_A|}$$
+* **Ray Saturation:** The rate at which the "Ray Bank" is being depleted.
+
+
+
+### 3. Robustness
+Resistance to noise and the model's ability to maintain high precision even when partial scales are suppressed.
+
+---
+
+## Conclusion
+This Ray-based approach allows a single model to grow continuously. By balancing the sharing of coarse global features with the strict isolation of fine-scale rays, we mimic the efficiency of modular biological systems while maintaining the mathematical rigor of modern gradient descent.
