@@ -10,12 +10,12 @@ $$X \longrightarrow \{ X^{(0)}, X^{(1)}, \dots, X^{(K)} \}$$
 * $X^{(0)}$: Coarse, global structure.
 * $X^{(K)}$: Fine, local details.
 
-## 2. Fovea Selection (Dynamic Attention)
+<!-- ## 2. Fovea Selection (Dynamic Attention)
 
 $$\mathcal{F}_t = \arg \max_{\Omega \subseteq X} S(X, \Omega)$$
 
 multiple signals to guide focus:
-$$S(X, \Omega) = \alpha_1 \text{Uncertainty}(\Omega) + \alpha_2 \text{Novelty}(\Omega) + \alpha_3 \text{PredictionError}(\Omega) + \alpha_4 \text{RayDensity}(\Omega)$$
+$$S(X, \Omega) = \alpha_1 \text{Uncertainty}(\Omega) + \alpha_2 \text{Novelty}(\Omega) + \alpha_3 \text{PredictionError}(\Omega) + \alpha_4 \text{RayDensity}(\Omega)$$ -->
 
 ## 3. Ray Allocation Across Scales
 Ray intensity $\alpha_k$ for each scale $k$ follows an exponential decay to balance the global context and local precision:
