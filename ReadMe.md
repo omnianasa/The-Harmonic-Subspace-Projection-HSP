@@ -70,7 +70,7 @@ The following diagnostic proofs confirm the internal mechanics of the HSP system
 *Figure 3: Resonance spectrum for Digit 2, showing energy spikes in the correct class subspace.*
 
 ### 5.4 Phase and Waveform Analysis
-![Phase Plane](phase.png) ![Waveform](classification/results/signalSignature.png)
+![Phase Plane](classification/results/phase.png) ![Waveform](classification/results/signalSignature.png)
 *Figure 4: Phase plane distribution (Left) and raw Ray Waveform signature (Right).*
 
 ### 5.5 Learned Spatial Morphology
