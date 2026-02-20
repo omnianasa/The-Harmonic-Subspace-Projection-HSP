@@ -82,6 +82,34 @@ The following diagnostic proofs confirm the internal mechanics of the HSP system
 *Figure 6: Similarity matrix showing mathematical correlation between different class subspaces.*
 
 ---
+## 4. Experiment 2: Comparative Performance Analysis
 
-## 6. Conclusion
-Experiment 1 confirms that HSP provides a deterministic, high-speed alternative to iterative models. Its primary strengths lie in its ultra-low training latency and the transparency of its "Energy-based" decision logic.
+In this experiment, we benchmarked the **Harmonic Signal Protocol (HSP)** against a diverse suite of industry-standard classifiers. This "Stress Test" evaluates the trade-offs between mathematical resonance and traditional iterative, distance-based, or ensemble-based learning methods.
+
+### 4.1 Full Technical Benchmark Table
+*Dataset: MNIST (20,000 Training Samples / 5,000 Test Samples)*
+
+| Model | Accuracy | Train Time (s) | Inference Time (s) | Throughput (img/s) | Scaling | Interpretability |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **HSP** | **0.9376** | **9.7313** | **0.2900** | **17,238.32** | **Linear** | **High** |
+| Logistic Reg | 0.9115 | 5.5051 | 0.0115 | 433,492.91 | Non-Linear | High |
+| Ridge Clf | 0.8540 | 0.8727 | 0.0175 | 285,113.45 | Linear | Low |
+| KNN (k=3) | 0.9528 | 0.0844 | 4.8930 | 1,021.85 | Non-Linear | Low |
+| Decision Tree | 0.8372 | 5.8212 | 0.0074 | 671,561.41 | Non-Linear | High |
+| Random Forest | 0.9516 | 6.2157 | 0.0602 | 82,975.67 | Non-Linear | Low |
+| Extra Trees | 0.9554 | 4.8460 | 0.0711 | 70,275.41 | Non-Linear | Low |
+| SVM (RBF) | 0.9672 | 26.7032 | 4.2529 | 1,175.66 | Non-Linear | Low |
+| MLP (128,64) | 0.9618 | 13.8231 | 0.0424 | 117,703.79 | Non-Linear | Low |
+| Naive Bayes | 0.5860 | 0.2145 | 0.1589 | 31,464.24 | Linear | Low |
+
+
+
+### 4.2 Experiment 2 Observations
+
+* **The Latency-Accuracy Balance:** While **SVM (RBF)** achieves the highest accuracy (0.9672), its inference process is over **14x slower** than HSP. This demonstrates HSP's efficiency in high-frequency environments where real-time response is critical.
+* **Throughput Advantage:** HSP maintains a robust throughput of **17,238 img/s**. While simpler linear models like Logistic Regression are faster, they fail to reach the $>93\%$ accuracy threshold achieved by the Harmonic Signal Protocol.
+* **Predictable Scaling:** Unlike **KNN**, which slows down drastically as the training set grows (due to $O(N)$ search complexity), HSP scales linearly. Its inference speed is determined solely by the `ray_dim`, making it predictable and ideal for hardware deployment (FPGAs/Edge).
+* **The Interpretability Gap:** Although **MLP** and **Random Forest** show strong performance, they remain "Black Box" models. HSP provides the only high-accuracy result in this table that can be fully diagnosed via **Subspace Resonance** and **Signal-to-Noise Ratio (SNR)** metrics.
+
+
+
