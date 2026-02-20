@@ -1,0 +1,7 @@
+--- HSP Technical Report ---
+Train Time:      5.8403s
+Final Accuracy:   94.70%
+Throughput:      32232 img/sec
+
+
+Average System SNR: 0.16 dB
