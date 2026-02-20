@@ -21,7 +21,7 @@ np.random.seed(42)
 
 class HSP:
     """
-     The Harmonic Signal Protocol (HSP)
+    The Harmonic Subspace Projection (HSP)
 
     This model performs classification by mapping input data into a high dimensional
     Fourier feature space (Rays) and then learning class specific subspaces via

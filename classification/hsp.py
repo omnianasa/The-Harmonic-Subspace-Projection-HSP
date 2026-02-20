@@ -5,11 +5,11 @@ import time
 
 class HSP:
     """
-    The Harmonic Signal Protocol (HSP)
+    The Harmonic Subspace Projection(HSP)
     
-    A subspace-based classifier that projects data into a high-dimensional 
-    Fourier space and classifies via 'Resonance Energy'—the L2 norm of the 
-    projection onto class-specific principal components.
+    A subspace based classifier that projects data into a high-dimensional 
+    Fourier space and classifies via 'Resonance Energy' the L2 norm of the 
+    projection onto class specific principal components.
     """
     
     def __init__(self, ray_dim=1024, subspace_dim=10):
@@ -92,37 +92,3 @@ class HSP:
         best_indices = np.argmax(scores, axis=1)
         return np.array([self.labels[i] for i in best_indices])
 
-# ---------------------------------------------------------
-# Execution & Verification
-# ---------------------------------------------------------
-
-if __name__ == "__main__":
-    print("Fetching MNIST dataset...")
-    X, y = fetch_openml('mnist_784', version=1, return_X_y=True, as_frame=False)
-    
-    # Preprocessing: Scale to [0, 1]
-    X_train, X_test, y_train, y_test = train_test_split(
-        X / 255.0, y, test_size=0.15, random_state=42
-    )
-
-    # Initialize and Train
-    model = HSP(ray_dim=512, subspace_dim=15)
-
-    print("Training HSP (Eigen-decomposition phase)...")
-    t0 = time.time()
-    model.learn(X_train, y_train)
-    train_time = time.time() - t0
-
-    print("Inference (Resonance calculation phase)...")
-    t1 = time.time()
-    preds = model.predict(X_test)
-    inference_time = time.time() - t1
-
-    # Metrics
-    accuracy = np.mean(preds == y_test) * 100
-    throughput = len(X_test) / inference_time
-
-    print(f"\n--- HSP Technical Report ---")
-    print(f"Train Time:      {train_time:.4f}s")
-    print(f"Final Accuracy:   {accuracy:.2f}%")
-    print(f"Throughput:      {throughput:.0f} img/sec")

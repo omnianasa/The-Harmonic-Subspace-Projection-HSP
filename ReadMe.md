@@ -1,15 +1,17 @@
-# Harmonic Signal Protocol (HSP)
+# Harmonic Subspace Projection (HSP)
 
 
 ## I. Abstract
-The Harmonic Signal Protocol (HSP) is a novel classification framework that replaces iterative gradient-based optimization with a closed-form geometric resonance model. By leveraging Random Fourier Features and class-specific eigen-decomposition, HSP maps high-dimensional input data onto distinct resonant manifolds. Our results on the MNIST-784 dataset demonstrate a competitive accuracy of **94.70%** and an industry-leading inference throughput of **32,232 images per second**. This paper validates that HSP provides a mathematically transparent "White-Box" alternative to neural networks, offering predictable linear scaling and intrinsic diagnostic metrics.
+The Harmonic Subspace Projection (HSP) is my new algorithm that replaces iterative gradient based optimization with a closed form geometric resonance model. By leveraging Random Fourier Features and class specific eigen decomposition, HSP maps high dimensional input data onto distinct resonant manifolds. Our results on the MNIST-784 dataset demonstrate a competitive accuracy of **94.70%** and an industry leading inference throughput of **32,232 images per second**. This report validates that HSP provides a mathematically transparent "White Box" alternative to neural networks, offering predictable linear scaling and intrinsic diagnostic metrics.
+
+> The protocol is functionally validated but requires further architectural refinement to reach peak optimization
 
 ---
 
 ## II. Introduction
 Conventional machine learning models, particularly Deep Neural Networks (DNNs), are constrained by the "Black Box" dilemma: the inability to trace a specific prediction back to deterministic geometric alignment. Furthermore, the reliance on backpropagation introduces significant computational overhead during training.
 
-The **Harmonic Signal Protocol (HSP)** addresses these limitations by reformulating classification as a signal-processing problem. Rooted in communication theory, HSP treats each class as a unique frequency-domain subspace. By identifying where an input "Turbo Ray" resonates most strongly, the protocol achieves classification without a single iteration of weight adjustment.
+The **Harmonic Subspace Projection (HSP)** addresses these limitations by reformulating classification as a signal processing problem. Rooted in communication theory, HSP treats each class as a unique frequency domain subspace. By identifying where an input "Ray" resonates most strongly, the protocol achieves classification without a single iteration of weight adjustment.
 
 ---
 
@@ -18,18 +20,18 @@ The **Harmonic Signal Protocol (HSP)** addresses these limitations by reformulat
 
 
 ### 3.1 Harmonic Ray Emission
-Input data $x \in \mathbb{R}^d$ is mapped into a high-dimensional oscillating feature space. Using a fixed orthogonal projection matrix $W$ (initialized via QR decomposition), we apply a sinusoidal transformation to approximate a shift-invariant kernel (Random Fourier Features):
+Input data $x \in \mathbb{R}^d$ is mapped into a high dimensional oscillating feature space. Using a fixed orthogonal projection matrix $W$ (initialized via QR decomposition), we apply a sinusoidal transformation to approximate a shift invariant kernel (Random Fourier Features):
 
 $$z = xW$$
 $$\Phi(x) = [\cos(z), \sin(z)]$$
 
-The resulting vector, termed a **"Turbo Ray"**, represents the input as a high-frequency signal signature. Rays undergo global mean centering and $L_2$ normalization to reside on a unit hypersphere.
+The resulting vector, termed a **"Ray"**, represents the input as a high frequency signal signature. Rays undergo global mean centering and $L_2$ normalization to reside on a unit hypersphere.
 
 ### 3.2 Subspace Learning
 Rather than learning a global decision boundary, HSP identifies the geometric manifold occupied by each class. For each class $k$, the protocol calculates the covariance of its training rays:
 $$\Sigma_k = \Phi(X_k)^T \Phi(X_k)$$
 
-Using covariance-based eigen-decomposition, we extract the top $m$ eigenvectors to form the **Class Basis** $B_k$. This basis defines the "resonant subspace" for that specific label.
+Using covariance-based eigen decomposition, we extract the top $m$ eigenvectors to form the **Class Basis** $B_k$. This basis defines the "resonant subspace" for that specific label.
 
 ### 3.3 Inference via Resonance Energy
 A test ray $\Phi(x_{test})$ is projected onto all learned class bases simultaneously. We calculate the **Resonance Energy** ($E$) as the squared $L_2$ norm of the projection:
@@ -63,27 +65,12 @@ $$\hat{y} = \text{argmax}_k E_k$$
 ### 4.2 Scaling and Latency Analysis
 
 
-While SVM and MLP offer marginally higher accuracy, HSP provides **Deterministic Latency**. Unlike KNN or SVM, where inference time increases with dataset size, HSP’s complexity is $O(1)$ relative to training samples. This makes it uniquely suited for **FPGA and Edge Hardware** where fixed-cycle execution is mandatory.
+While SVM and MLP offer marginally higher accuracy, HSP provides **Deterministic Latency**. Unlike KNN or SVM, where inference time increases with dataset size, HSP’s complexity is $O(1)$ relative to training samples. This makes it uniquely suited for **FPGA and Edge Hardware** where fixed cycle execution is mandatory.
 
 ---
 
 ## V. Diagnostic Analysis (White-Box Benefits)
 
-The primary benefit of HSP is **Observability**. We provide three core diagnostic proofs that neural networks cannot natively offer:
-
-1.  **Signal-to-Noise Ratio (SNR):** We can quantify the "confidence" of a prediction in decibels. If a prediction has a low SNR, we know the input is ambiguous or out-of-distribution before the result is even returned.
-2.  **Resonance Spectrum:** Figure 3 provides a mathematical "receipt" for every decision, showing exactly how much energy was captured by each class subspace.
-3.  **Spatial Morphology:** By performing an inverse projection, we can visualize the model's "mental image" of a class (Figure 5). This allows developers to verify that the model is learning the *shape* of a digit rather than background noise.
-
-The following diagnostic proofs provide a mathematical "receipt" for the internal mechanics of the HSP system. Unlike black-box neural networks, HSP allows for direct observation of the latent manifold and signal resonance.
-
-Unlike neural networks, HSP provides a "mathematical receipt" for every decision.
-
-To remove Figure 4 (Phase 4) while maintaining the professional balance of your report, we need to shift from a 2x2 grid to a layout that better accommodates three primary figures.
-
-Here is the reorganized Section IV with the Morphological Proof removed and the remaining diagnostic proofs centered and balanced.
-
-IV. Diagnostic Analysis (White-Box Benefits)
 The primary advantage of HSP is Total Observability. By treating classification as a resonance problem, we can generate a "mathematical receipt" for every decision, allowing for real-time auditing of model confidence and manifold health.
 
 <table style="width: 100%; table-layout: fixed; border-collapse: collapse;">
@@ -126,6 +113,6 @@ The primary advantage of HSP is Total Observability. By treating classification 
 ---
 
 ## VI. Conclusion
-Experiment 1 and 2 validate that the **Harmonic Signal Protocol** is a viable high-speed alternative to iterative models. HSP bridges the gap between the speed of linear classifiers and the power of non-linear kernels. Its "White-Box" nature eliminates the uncertainty of deep learning, making it the ideal choice for mission-critical systems requiring high-throughput, explainable AI.
+Experiment 1 and 2 validate that the **Harmonic Subspace Projection** is a viable high speed alternative to iterative models. HSP bridges the gap between the speed of linear classifiers and the power of non linear kernels. Its "White Box" nature eliminates the uncertainty of deep learning, making it the ideal choice for mission critical systems requiring high throughput, explainable AI.
 
 ---
