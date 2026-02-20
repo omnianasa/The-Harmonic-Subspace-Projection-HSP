@@ -4,7 +4,7 @@
 ## I. Abstract
 The Harmonic Subspace Projection (HSP) is my new algorithm that replaces iterative gradient based optimization with a closed form geometric resonance model. By leveraging Random Fourier Features and class specific eigen decomposition, HSP maps high dimensional input data onto distinct resonant manifolds. Our results on the MNIST-784 dataset demonstrate a competitive accuracy of **94.70%** and an industry leading inference throughput of **32,232 images per second**. This report validates that HSP provides a mathematically transparent "White Box" alternative to neural networks, offering predictable linear scaling and intrinsic diagnostic metrics.
 
-> The protocol is functionally validated but requires further architectural refinement to reach peak optimization
+> The algorithm is functionally validated but requires further architectural refinement to reach peak optimization
 
 ---
 
