@@ -62,18 +62,11 @@ $$\hat{y} = \text{argmax}_k E_k$$
 | MLP (128,64) | 0.9618 | 13.8231 | 0.0424 | 117,703.79 | Non-Linear | Low |
 | Naive Bayes | 0.5860 | 0.2145 | 0.1589 | 31,464.24 | Linear | Low |
 
-
-
-### 4.2 Scaling and Latency Analysis
-
-
-While SVM and MLP offer marginally higher accuracy, HSP provides **Deterministic Latency**. Unlike KNN or SVM, where inference time increases with dataset size, HSP’s complexity is $O(1)$ relative to training samples. This makes it uniquely suited for **FPGA and Edge Hardware** where fixed cycle execution is mandatory.
-
 ---
 
 ## V. Diagnostic Analysis (White-Box Benefits)
 
-The primary advantage of HSP is Total Observability. By treating classification as a resonance problem, we can generate a "mathematical receipt" for every decision, allowing for real-time auditing of model confidence and manifold health.
+The primary advantage of HSP is treating classification as a resonance problem, we can generate a "mathematical receipt" for every decision, allowing for real-time auditing of model confidence and manifold health.
 
 <table style="width: 100%; table-layout: fixed; border-collapse: collapse;">
 <tr>
@@ -115,6 +108,9 @@ The primary advantage of HSP is Total Observability. By treating classification 
 ---
 
 ## VI. Conclusion
-Experiment 1 and 2 validate that the **Harmonic Subspace Projection** is a viable high speed alternative to iterative models. HSP bridges the gap between the speed of linear classifiers and the power of non linear kernels. Its "White Box" nature eliminates the uncertainty of deep learning, making it the ideal choice for mission critical systems requiring high throughput, explainable AI.
+
+While Harmonic Subspace Projection (HSP) offers a groundbreaking leap in processing speed and memory retention, it is currently in a formative stage and remains 'computationally lean' compared to mature deep learning architectures. Its primary weakness lies in its single layer feature extraction; unlike Convolutional Neural Networks (CNNs) that learn hierarchical abstractions through dozens of layers, HSP relies on a direct harmonic mapping that can struggle with high entropy datasets or subtle intra class variations. 
+
+Additionally, because the framework utilizes random projections, it lacks the 'feature tuning' precision found in backpropagation based models, making it more susceptible to performance plateaus when faced with complex noise. To truly challenge state of the art models, HSP requires further development in adaptive dimensionality and the integration of iterative refinement loops to sharpen its discriminative power without sacrificing its hallmark 'White Box' transparency.
 
 ---
