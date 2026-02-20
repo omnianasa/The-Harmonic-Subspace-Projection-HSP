@@ -38,6 +38,8 @@ A test ray $\Phi(x_{test})$ is projected onto all learned class bases simultaneo
 $$E_k = \| \Phi(x_{test}) B_k^T \|^2$$
 
 The system selects the label with the maximum resonance energy:
+
+
 $$\hat{y} = \text{argmax}_k E_k$$
 ---
 
