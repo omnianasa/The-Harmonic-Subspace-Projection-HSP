@@ -1,47 +1,31 @@
 # Harmonic Subspace Projection (HSP)
 
+> Just personal experiment
 
-## I. Abstract
-The Harmonic Subspace Projection (HSP) is my new algorithm that replaces iterative gradient based optimization with a closed form geometric resonance model. By leveraging Random Fourier Features and class specific eigen decomposition, HSP maps high dimensional input data onto distinct resonant manifolds. Our results on the MNIST-784 dataset demonstrate a competitive accuracy of **94.70%** and an industry leading inference throughput of **32,232 images per second**. This report validates that HSP provides a mathematically transparent "White Box" alternative to neural networks, offering predictable linear scaling and intrinsic diagnostic metrics.
+## I. Overview
+The **Harmonic Subspace Projection (HSP)** is a new way to classify data without the guessing game of traditional AI. Instead of using standard deep learning, HSP treats data like radio signals. By using geometry and physics, it maps information onto resonant manifolds. 
 
-> The algorithm is functionally validated but requires further architectural refinement to reach peak optimization
+In tests with the MNIST dataset, HSP achieved **94.70% accuracy** and can process **32,232 images per second** making it incredibly fast and mathematically transparent.
+
+
+## II. The Problem with "Black Box" AI
+
+Most modern AI models are "Black Boxes." They learn through trial and error (backpropagation), making it hard to explain exactly why a model chose a specific answer. They also require massive amounts of computing power to train.
+
+HSP tries to solve this by treating classification as a signal processing task. It identifies a unique resonant space for every category. By seeing where a new piece of data vibrates the loudest, HSP finds the answer instantly without needing a single training iteration.
 
 ---
 
-## II. Introduction
-Conventional machine learning models, particularly Deep Neural Networks (DNNs), are constrained by the "Black Box" dilemma: the inability to trace a specific prediction back to deterministic geometric alignment. Furthermore, the reliance on backpropagation introduces significant computational overhead during training.
+## III. How It Works
 
-The **Harmonic Subspace Projection (HSP)** addresses these limitations by reformulating classification as a signal processing problem. Rooted in communication theory, HSP treats each class as a unique frequency domain subspace. By identifying where an input "Ray" resonates most strongly, the protocol achieves classification without a single iteration of weight adjustment.
+### 1. Creating the Ray
+We take input data (like an image) and turn it into a high frequency signal called a **Ray**. We use a fixed mathematical projection to make sure every image is represented as a unique oscillating signature.
 
----
+### 2. Building the Subspaces
+Instead of drawing lines between categories, HSP builds a geometric subspace (like a room) for each one. We look at the training data for a specific class (like the number 5) and extract the most important patterns to form a **Class Basis**. This is the resonant subspace where that category lives.
 
-## III. Methodology
-
-
-
-### 3.1 Harmonic Ray Emission
-Input data $x \in \mathbb{R}^d$ is mapped into a high dimensional oscillating feature space. Using a fixed orthogonal projection matrix $W$ (initialized via QR decomposition), we apply a sinusoidal transformation to approximate a shift invariant kernel (Random Fourier Features):
-
-$$z = xW$$
-$$\Phi(x) = [\cos(z), \sin(z)]$$
-
-The resulting vector, termed a **"Ray"**, represents the input as a high frequency signal signature. Rays undergo global mean centering and $L_2$ normalization to reside on a unit hypersphere.
-
-### 3.2 Subspace Learning
-Rather than learning a global decision boundary, HSP identifies the geometric manifold occupied by each class. For each class $k$, the protocol calculates the covariance of its training rays:
-$$\Sigma_k = \Phi(X_k)^T \Phi(X_k)$$
-
-Using covariance-based eigen decomposition, we extract the top $m$ eigenvectors to form the **Class Basis** $B_k$. This basis defines the "resonant subspace" for that specific label.
-
-### 3.3 Inference via Resonance Energy
-A test ray $\Phi(x_{test})$ is projected onto all learned class bases simultaneously. We calculate the **Resonance Energy** ($E$) as the squared $L_2$ norm of the projection:
-$$E_k = \| \Phi(x_{test}) B_k^T \|^2$$
-
-The system selects the label with the maximum resonance energy:
-
-
-$$\hat{y} = \text{argmax}_k E_k$$
----
+### 3. Finding the Resonance
+To check a new image, we bounce its Ray off every category's room at the same time. We measure the **Resonance Energy** (the strength of the echo). The category with the strongest vibration is the winner.
 
 ## IV. Experimental Results & Comparative Analysis
 
@@ -109,8 +93,10 @@ The primary advantage of HSP is treating classification as a resonance problem, 
 
 ## VI. Conclusion
 
-While Harmonic Subspace Projection (HSP) offers a groundbreaking leap in processing speed and memory retention, it is currently in a formative stage and remains 'computationally lean' compared to mature deep learning architectures. Its primary weakness lies in its single layer feature extraction; unlike Convolutional Neural Networks (CNNs) that learn hierarchical abstractions through dozens of layers, HSP relies on a direct harmonic mapping that can struggle with high entropy datasets or subtle intra class variations. 
+HSP is a "(informal) lean and mean" alternative to heavy AI, but it is still evolving. 
 
-Additionally, because the framework utilizes random projections, it lacks the 'feature tuning' precision found in backpropagation based models, making it more susceptible to performance plateaus when faced with complex noise. To truly challenge state of the art models, HSP requires further development in adaptive dimensionality and the integration of iterative refinement loops to sharpen its discriminative power without sacrificing its hallmark 'White Box' transparency.
+* **Current Weakness:** It uses a single layer to look at data. Unlike deep neural networks that see details and then shapes, HSP looks at everything at once. This can make it struggle with very complex or messy images.
+
+* **Next Steps:** I am working on making the system adaptive so it can focus on important details automatically, sharpening its accuracy without losing its signature speed and transparency.
 
 ---
