@@ -18,14 +18,27 @@ HSP tries to solve this by treating classification as a signal processing task. 
 
 ## III. How It Works
 
-### 1. Creating the Ray
-We take input data (like an image) and turn it into a high frequency signal called a **Ray**. We use a fixed mathematical projection to make sure every image is represented as a unique oscillating signature.
+### 1. Creating the "Ray" (Mapping)
+We take raw input $x$ and project it into a high-dimensional oscillating space. This turns a static image into a unique "vibrational signature" called a **Ray**.
+* **Project the data:** $z = xW$
+* **Apply sinusoidal transformation:** $\Phi(x) = [\cos(z), \sin(z)]$
+
+The resulting vector $\Phi(x)$ is normalized to sit on a unit hypersphere, ensuring every input has a clean, comparable signal.
 
 ### 2. Building the Subspaces
-Instead of drawing lines between categories, HSP builds a geometric subspace (like a room) for each one. We look at the training data for a specific class (like the number 5) and extract the most important patterns to form a **Class Basis**. This is the resonant subspace where that category lives.
+Instead of drawing lines between categories, HSP mathematically builds a "resonant room" (subspace) for each class $k$. We calculate how the Rays of that class spread out using a covariance matrix:
+$$\Sigma_k = \Phi(X_k)^T \Phi(X_k)$$
+
+We then extract the most important patterns (eigenvectors) to form the **Class Basis** $B_k$. This defines the geometric "shape" of that specific category.
 
 ### 3. Finding the Resonance
-To check a new image, we bounce its Ray off every category's room at the same time. We measure the **Resonance Energy** (the strength of the echo). The category with the strongest vibration is the winner.
+To classify a new item, we bounce its Ray $\Phi(x_{test})$ off every category's room simultaneously. We measure the **Resonance Energy** ($E_k$), which tells us how well the Ray fits into that specific room:
+$$E_k = \| \Phi(x_{test}) B_k^T \|^2$$
+
+The category that produces the strongest "echo" (the highest energy) is the winner:
+$$\hat{y} = \text{argmax}_k E_k$$
+
+---
 
 ## IV. Experimental Results & Comparative Analysis
 
